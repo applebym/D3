@@ -240,16 +240,16 @@ d3.csv("reddit.csv", function(error, data) {
     .attr("x", -250)
     .attr("y", -57)
     .style("font-size", "15px") 
-    .text("Topic Likelihood");
+    .text("Average Topic Strength");
   
   // Title
   svg.append("text")
       .attr("x", (width / 2))             
       .attr("y", 5 - (margin.top / 2))
       .attr("text-anchor", "middle")  
-      .style("font-size", "19px") 
+      .style("font-size", "23px") 
       .style("font-weight", "bold") 
-      .text("Topic Likelihood For 'Controversial' and 'Popular' Reddit Posts");
+      .text("Topic Strength For 'Controversial' and 'Popular' Reddit Posts");
 
   // Instructions
   svg.append("text")

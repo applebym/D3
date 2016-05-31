@@ -106,7 +106,6 @@ d3.csv("reddit.csv", function(error, data) {
   var postNames = ["Controversial","Popular"];
 
   data.forEach(function(d) {
-    console.log(d);
     d.posts = postNames.map(function(name) { 
       if (name =='Controversial') {
         return { name: name, value: +d[name], word: d.TopicWord, reddit1: d.ControversialText1, reddit2: d.ControversialText2, reddit3: d.ControversialText3};
@@ -125,7 +124,14 @@ d3.csv("reddit.csv", function(error, data) {
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .style("font-size", "13px")
-      .call(xAxis);
+      .call(xAxis)
+      .selectAll("text")
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("transform", function(d) {
+          return "rotate (-45)"
+        });
         
   svg.append("g")
       .attr("class", "y axis")
@@ -182,7 +188,7 @@ d3.csv("reddit.csv", function(error, data) {
             .style("pointer-events", "none")
             .attr("id", "redditText1")
             .attr("x", 70)
-            .attr("y", height + 125)
+            .attr("y", height + 175)
             .style("font-size", "13.5px") 
             .style("text-decoration", "bold")  
             .text(d.reddit1);
@@ -190,7 +196,7 @@ d3.csv("reddit.csv", function(error, data) {
             .style("pointer-events", "none")
             .attr("id", "redditText2")
             .attr("x", 70)
-            .attr("y", height + 160)
+            .attr("y", height + 210)
             .style("font-size", "13.5px") 
             .style("text-decoration", "bold")  
             .text(d.reddit2);
@@ -198,7 +204,7 @@ d3.csv("reddit.csv", function(error, data) {
             .style("pointer-events", "none")
             .attr("id", "redditText3")
             .attr("x", 70)
-            .attr("y", height + 195)
+            .attr("y", height + 245)
             .style("font-size", "13.5px") 
             .style("text-decoration", "italic")  
             .text(d.reddit3);
@@ -229,7 +235,7 @@ d3.csv("reddit.csv", function(error, data) {
   svg.append("text")
     .attr("class", "x label")
     .attr("x", width / 2.2)
-    .attr("y", height + 40)
+    .attr("y", height + 90)
     .style("font-size", "15px") 
     .text("Topic Number");
   
@@ -254,7 +260,7 @@ d3.csv("reddit.csv", function(error, data) {
   // Instructions
   svg.append("text")
       .attr("x", 565)             
-      .attr("y", height + 90)
+      .attr("y", height + 140)
       .attr("text-anchor", "middle")  
       .style("font-size", "14px") 
       .style("fill", "#DC381F")
@@ -264,7 +270,7 @@ d3.csv("reddit.csv", function(error, data) {
   // Reddit Posts Title
   svg.append("text")
       .attr("x", 70)             
-      .attr("y", height + 90)
+      .attr("y", height + 140)
       .attr("text-anchor", "left")  
       .style("font-size", "16px")  
       .style("font-weight", "bold")  
@@ -273,7 +279,7 @@ d3.csv("reddit.csv", function(error, data) {
   svg.append("svg:image")
       .attr("xlink:href", "https://www.redditstatic.com/about/assets/reddit-alien.png")
       .attr("x", -45)
-      .attr("y", height + 77)
+      .attr("y", height + 137)
       .attr("width", 120)
       .attr("height", 120);
 
